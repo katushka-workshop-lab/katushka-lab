@@ -1,0 +1,33 @@
+1:"$Sreact.fragment"
+2:"static/chunks/778-368e9bd221e37fb1.js"
+3:"static/chunks/app/layout-db71c4e3deda06e0.js"
+4:"WindingDraftProvider"
+5:I[8830,["778","$2","177","$3"],"$4"]
+6:I[2129,["778","$2","177","$3"],"AppNavigation"]
+7:I[2107,[],""]
+8:I[9655,[],""]
+9:"static/chunks/app/profile/page-2055ae178382a42b.js"
+a:I[7778,["778","$2","636","$9"],""]
+11:I[6482,[],"OutletBoundary"]
+12:"$Sreact.suspense"
+15:"ViewportBoundary"
+16:I[6482,[],"$15"]
+17:"MetadataBoundary"
+18:I[6482,[],"$17"]
+19:I[2391,[],"IconMark"]
+:HL["/katushka-lab/_next/static/css/6c4f438fd95a7e7f.css","style"]
+c:X
+f:X
+f:C
+10:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","div",null,{"className":"brand-shell","children":["$","div",null,{"className":"brand-container","children":[["$","main",null,{"id":"main-content","children":[["$","div",null,{"className":"page-heading","children":[["$","p",null,{"className":"eyebrow","children":"С НАС НАЧИНАЕТСЯ ЗНАКОМСТВО"}],["$","h1",null,{"children":"Мой профиль"}],["$","p",null,{"className":"page-description","children":"Демонстрационный профиль владельца KATUШКИ."}],["$","div",null,{"className":"thread-rule","aria-hidden":"true"}]]}],[["$","section",null,{"className":"paper-panel profile-panel","children":[["$","div",null,{"className":"profile-avatar","aria-hidden":"true","children":"Д"}],["$","span",null,{"className":"demo-label","children":"Вымышленный профиль"}],["$","h2",null,{"children":"Демо Владелец"}],["$","p",null,{"children":"Собираю интересные разговоры и берегу знакомства."}],["$","dl",null,{"className":"profile-facts","children":[["$","div",null,{"children":[["$","dt",null,{"children":"Интересы"}],["$","dd",null,{"children":"Люди, творчество, общие идеи"}]]}],["$","div",null,{"children":[["$","dt",null,{"children":"Контакт для примера"}],["$","dd",null,{"children":"hello@example.com"}]]}]]}],["$","$La",null,{"href":"/card","className":"secondary-button w-full","children":["Открыть мою визитку ",["$","span",null,{"aria-hidden":"true","children":"→"}]]}]]}],["$","p",null,{"className":"helper-text","children":"Сведения демонстрационные. Создание аккаунта и редактирование профиля появятся на следующих этапах."}]]]}],["$","footer",null,{"className":"brand-footer","children":[["$","span",null,{"className":"thread-dot","aria-hidden":"true"}],["$","span",null,{"children":"Знакомься на всю катушку"}],["$","span",null,{"className":"demo-pill","children":"Демо"}]]}]]}]}],null,["$","$L11",null,{"children":["$","$12",null,{"name":"Next.MetadataOutlet","children":"$@13"}]}]]}],"p":"$@14","v":null,"s":"$c"}}]]
+d:[["children",{"s":"profile","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","template":["$","$L8",null,{}]}]]}],"p":"$@e","v":"$f","s":"$c"},"c":"$Q10"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/katushka-lab/_next/static/css/6c4f438fd95a7e7f.css","precedence":"next"}]],["$","html",null,{"lang":"ru","children":["$","body",null,{"children":[["$","aside",null,{"role":"note","data-preview-base-path":"/katushka-lab","style":{"padding":"8px 16px","background":"#fff1d6","color":"#3d2515","fontSize":13,"lineHeight":1.5},"children":"KATUШКА LAB · Только вымышленные записи · Не импортируйте личные копии"}],["$","$L5",null,{"children":["$","$L6",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","template":["$","$L8",null,{}],"notFound":[["$","div",null,{"className":"brand-shell","children":["$","div",null,{"className":"brand-container","children":[["$","main",null,{"id":"main-content","children":[["$","div",null,{"className":"page-heading","children":[["$","p",null,{"className":"eyebrow","children":"СТРАНИЦА НЕ НАЙДЕНА"}],["$","h1",null,{"children":"Нить потерялась"}],["$","p",null,{"className":"page-description","children":"Такой страницы пока нет. Вернитесь к началу знакомства."}],["$","div",null,{"className":"thread-rule","aria-hidden":"true"}]]}],["$","$La",null,{"href":"/","className":"primary-button","children":"На главный экран"}]]}],["$","footer",null,{"className":"brand-footer","children":[["$","span",null,{"className":"thread-dot","aria-hidden":"true"}],["$","span",null,{"children":"Знакомься на всю катушку"}],["$","span",null,{"className":"demo-pill","children":"Демо"}]]}]]}]}],[]]}]}]}]]}]}]]}],"p":"$@b","v":null,"s":"$c"},"c":"$Qd"},"h":{"r":["$","$1","h",{"children":[null,["$","$L16",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, viewport-fit=cover"}],["$","meta","2",{"name":"theme-color","content":"#24160f"}],["$","meta","3",{"name":"color-scheme","content":"light"}]]}],["$","$L18",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$12",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Профиль · KATUШКА LAB"}],["$","meta","1",{"name":"description","content":"KATUШКА — демонстрационный прототип: сохраняйте знакомства, вспоминайте истории и делитесь визиткой."}],["$","meta","2",{"name":"application-name","content":"KATUШКА LAB"}],["$","link","3",{"rel":"manifest","href":"/katushka-lab/manifest.webmanifest"}],["$","meta","4",{"name":"apple-mobile-web-app-capable","content":"yes"}],["$","meta","5",{"name":"mobile-web-app-capable","content":"yes"}],["$","meta","6",{"name":"apple-mobile-web-app-title","content":"KATUШКА LAB"}],["$","meta","7",{"name":"apple-mobile-web-app-status-bar-style","content":"black-translucent"}],["$","meta","8",{"property":"og:title","content":"KATUШКА LAB"}],["$","meta","9",{"property":"og:description","content":"Знакомься на всю катушку"}],["$","meta","10",{"property":"og:url","content":"https://katushka-workshop-lab.github.io/katushka-lab/"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"KATUШКА LAB"}],["$","meta","14",{"name":"twitter:description","content":"Знакомься на всю катушку"}],["$","link","15",{"rel":"icon","href":"/katushka-lab/icons/favicon-v1-32.png","sizes":"32x32","type":"image/png"}],["$","link","16",{"rel":"icon","href":"/katushka-lab/icons/app-icon-v1-192.png","sizes":"192x192","type":"image/png"}],["$","link","17",{"rel":"apple-touch-icon","href":"/katushka-lab/icons/apple-touch-icon-v1.png","sizes":"180x180","type":"image/png"}],["$","$L19","18",{}]]}]}],null]}],null]}],"p":"$@1a","v":null,"s":"$c"}},"a":"$@1b","u":"$@1c","b":"6zupu-WyPW1F-hqNGz4Js"}
+13:null
+c:300
+1c:true
+c:C
+1b:0
+e:"$undefined"
+b:"$undefined"
+1a:"$undefined"
+14:"$undefined"

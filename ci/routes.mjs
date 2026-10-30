@@ -1,0 +1,1 @@
+export const ROUTES = ["", "profile", "settings", "namotka", "card", "razmotka", "people", "search", "events", "share", "workshop", "workshop/new", "workshop/drafts", "workshop/idea", "workshop/projects", "workshop/project", "workshop/golden-hundred"];
