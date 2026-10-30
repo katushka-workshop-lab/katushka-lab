@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {spawnSync} from 'node:child_process';
+import {spawnSync,spawn} from 'node:child_process';
 import {ROUTES} from './routes.mjs';
 const root=path.resolve(process.argv[2]||'site');
 const release=JSON.parse(await fs.readFile(process.argv[3]||'release.json','utf8'));
@@ -34,7 +34,11 @@ if(process.env.GITHUB_ACTIONS==='true'){
  if(parent.status===0){
   const prev=parent.stdout.trim();const listed=spawnSync('git',['ls-tree','-r','--name-only',prev,'--','site/_next/static','site/images','site/icons'],{encoding:'utf8'});assert.equal(listed.status,0);
   for(const file of listed.stdout.trim().split('\n').filter(Boolean)){
-   const old=spawnSync('git',['show',prev+':'+file]);assert.equal(old.status,0);assert.equal(sha(await fs.readFile(file)),sha(old.stdout),'Old dependency removed/changed: '+file);
+   // Stream blobs: public images can exceed spawnSync's default 1 MiB buffer.
+   const child=spawn('git',['show',prev+':'+file],{stdio:['ignore','pipe','ignore']});
+   const finished=new Promise((resolve,reject)=>{child.once('error',reject);child.once('close',code=>code===0?resolve():reject(Error('Unable to read prior dependency: '+file)));});
+   const previousHash=createHash('sha256');for await(const chunk of child.stdout)previousHash.update(chunk);await finished;
+   assert.equal(sha(await fs.readFile(file)),previousHash.digest('hex'),'Old dependency removed/changed: '+file);
   }
  }
 }
