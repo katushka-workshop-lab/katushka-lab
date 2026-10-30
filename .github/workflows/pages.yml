@@ -15,7 +15,7 @@ jobs:
     env:
       KATUSHKA_TEST_LAB: '1'
       KATUSHKA_TEST_PACKAGE: site
-      KATUSHKA_TEST_OUTPUT: ${{ runner.temp }}/lab-browser-results
+      KATUSHKA_TEST_OUTPUT: lab-browser-results
       KATUSHKA_PLAYWRIGHT_PATH: ${{ github.workspace }}/ci/node_modules/playwright
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
