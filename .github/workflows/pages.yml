@@ -34,6 +34,23 @@ jobs:
           node ci/node_modules/playwright/cli.js install --with-deps chromium webkit
           echo "KATUSHKA_CHROMIUM_EXECUTABLE=$(node --input-type=module -e "import {chromium} from './ci/node_modules/playwright/index.mjs'; console.log(chromium.executablePath())")" >> "$GITHUB_ENV"
       - run: node ci/check-ui.mjs
+      - name: Prepare previous static release for update checks
+        run: |
+          if git cat-file -e HEAD^:site/index.html 2>/dev/null; then
+            git worktree add --detach "$RUNNER_TEMP/lab-previous" HEAD^
+            OLD_SITE="$RUNNER_TEMP/lab-previous/site" node --input-type=module <<'JS'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          for (const directory of ['_next/static','icons','images']) {
+            await fs.cp(path.join('site',directory),path.join(process.env.OLD_SITE,directory),{recursive:true,force:false});
+          }
+          JS
+            echo "KATUSHKA_TEST_PREVIOUS_PACKAGE=$RUNNER_TEMP/lab-previous/site" >> "$GITHUB_ENV"
+          fi
+      - name: Check durable winding drafts
+        run: node ci/check-drafts.mjs
+        env:
+          KATUSHKA_TEST_OUTPUT: lab-draft-browser-results
       - name: Upload only the tested site directory
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:

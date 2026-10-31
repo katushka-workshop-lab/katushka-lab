@@ -112,26 +112,22 @@ try {
       check("Legacy record reads without migration; equal names stay two independent histories");
 
       const tabs = await Promise.all([context.newPage(), context.newPage()]);
-      await Promise.all(tabs.map(async (tab, index) => {
+      await Promise.all(tabs.map(async tab => {
         await tab.goto(server.origin + prefix + `namotka/?history=${legacy.id}`, { waitUntil: "networkidle" });
-        await tab.getByLabel("Новая Намотка", { exact: true }).fill(`SYNTHETIC261 Параллельная вкладка ${index}`);
+        await tab.locator('[data-testid="winding-draft-status"][data-ready="true"]').waitFor({ state: "attached" });
       }));
-      await Promise.all(tabs.map(tab => tab.getByRole("button", { name: "Сохранить", exact: true }).click()));
-      const outcomes = await Promise.all(tabs.map(async (tab, index) => {
-        await tab.locator(".message--success, .message--error").waitFor();
-        const saved = await tab.getByText("Новая Намотка сохранена в этой истории.", { exact: true }).count();
-        if (!saved) {
-          assert.match(await tab.getByRole("alert").filter({ hasText: "Сохранение в этой вкладке приостановлено" }).textContent(), /Сохранение в этой вкладке приостановлено/);
-          assert.equal(await tab.getByLabel("Новая Намотка", { exact: true }).inputValue(), `SYNTHETIC261 Параллельная вкладка ${index}`);
-        }
-        return !!saved;
-      }));
-      assert.equal(outcomes.filter(Boolean).length, 1);
+      const editors = await Promise.all(tabs.map(tab => tab.getByLabel("Новая Намотка", { exact: true }).isEditable()));
+      assert.equal(editors.filter(Boolean).length, 1);
+      const writer = tabs[editors.indexOf(true)], reader = tabs[editors.indexOf(false)];
+      await writer.getByLabel("Новая Намотка", { exact: true }).fill("SYNTHETIC261 Параллельная вкладка");
+      await writer.getByRole("button", { name: "Сохранить", exact: true }).click();
+      await writer.getByText("Новая Намотка сохранена в этой истории.", { exact: true }).waitFor();
+      assert.equal(await reader.getByLabel("Новая Намотка", { exact: true }).isEditable(), false);
+      assert.ok(await reader.getByRole("alert").count());
       await Promise.all(tabs.map(tab => tab.close()));
-      // Reopen to get an independent current storage view, not a lagging tab cache.
       await history(rootID);
       assert.equal(JSON.parse(await snapshot()).contacts.find(item => item.id === legacy.id).windings.length, 2);
-      check("Concurrent tabs: exactly one writer saves; the other retains its complete draft with a clear warning");
+      check("Concurrent tabs: draft lease allows exactly one writer; the second is read-only without overwriting records");
 
       const beforeDrafts = await snapshot();
       await go("namotka/"); await page.getByLabel("Полный рассказ", { exact: true }).fill("SYNTHETIC261 Отдельная несохранённая первая Намотка");
@@ -144,17 +140,17 @@ try {
       await page.getByLabel("Новая Намотка", { exact: true }).fill("SYNTHETIC261 Черновик Б");
       await tap(page.getByRole("link", { name: "Вернуться к истории", exact: true })); await page.goBack({ waitUntil: "networkidle" }); await page.getByLabel("Новая Намотка", { exact: true }).waitFor();
       assert.equal(await page.getByLabel("Новая Намотка", { exact: true }).inputValue(), "SYNTHETIC261 Черновик Б");
-      await tap(page.getByRole("button", { name: "Отменить дополнение", exact: true })); await tap(page.getByRole("button", { name: "Продолжить дополнение", exact: true }));
+      await tap(page.getByRole("button", { name: "Удалить черновик", exact: true })); await tap(page.getByRole("button", { name: "Продолжить дополнение", exact: true }));
       assert.equal(await page.getByLabel("Новая Намотка", { exact: true }).inputValue(), "SYNTHETIC261 Черновик Б");
-      await tap(page.getByRole("button", { name: "Отменить дополнение", exact: true })); await tap(page.getByRole("button", { name: "Удалить только это дополнение", exact: true }));
+      await tap(page.getByRole("button", { name: "Удалить черновик", exact: true })); await tap(page.getByRole("button", { name: "Удалить только это дополнение", exact: true }));
       await tap(page.getByRole("link", { name: "Вернуться к истории", exact: true })); await tap(page.getByRole("link", { name: "К списку историй", exact: true }));
       await tap(page.locator(`.contact-entry a[href*="history=${rootID}"]`).first()); await addition();
       assert.equal(await page.getByLabel("Новая Намотка", { exact: true }).inputValue(), "SYNTHETIC261 Черновик А");
       await page.screenshot({ path: path.join(output, `${engine}-addition.png`) });
-      await tap(page.getByRole("button", { name: "Отменить дополнение", exact: true })); await tap(page.getByRole("button", { name: "Удалить только это дополнение", exact: true }));
+      await tap(page.getByRole("button", { name: "Удалить черновик", exact: true })); await tap(page.getByRole("button", { name: "Удалить только это дополнение", exact: true }));
       await tap(page.locator(".app-home-link")); await tap(page.getByRole("link", { name: "Намотка — сохранить знакомство", exact: true }));
       assert.equal(await page.getByLabel("Полный рассказ", { exact: true }).inputValue(), "SYNTHETIC261 Отдельная несохранённая первая Намотка");
-      await tap(page.getByRole("button", { name: "Отменить Намотку", exact: true })); await tap(page.getByRole("button", { name: "Удалить только черновик", exact: true }));
+      await tap(page.getByRole("button", { name: "Удалить черновик", exact: true })); await tap(page.getByRole("button", { name: "Удалить только черновик", exact: true }));
       assert.equal(await snapshot(), beforeDrafts);
       check("Back/return, independent first/A/B drafts and explicit cancellation preserve text and saved storage");
 

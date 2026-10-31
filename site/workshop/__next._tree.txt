@@ -2,4 +2,4 @@
 :HL["/katushka-lab/_next/static/css/6902d533111b86f5.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"workshop","h":96,"c":"$Q2"}]]
-0:{"b":"6zupu-WyPW1F-hqNGz4Js","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"bLU1xS0vTM9d_lx91U15x","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
